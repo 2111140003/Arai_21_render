@@ -1,0 +1,23 @@
+<% @tasks.each do |e| %>
+    <p>
+        <%= e.task_name %>
+        </br>
+        タスク詳細
+        </br>
+        <%= e.task_det %>
+    </p>
+    
+    <hr>
+    
+<% end %>
+
+
+
+<%= form_for @task, url: {action: :create} do |f| %>
+    <%= f.label :task_name, 'タスク名' %>
+    <%= f.text_field :task_name %>
+    </br>
+    <%= f.label :task_det, 'タスク詳細' %>
+    <%= f.text_field :task_det %>
+    <%= f.submit 'タスクの追加' %>
+<% end %>
