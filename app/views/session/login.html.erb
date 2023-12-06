@@ -1,9 +1,0 @@
-<h1>ログイン画面</h1>
-
-<%= form_tag '/session/login', method: :post do %>
-    <%= label_tag :user_name, 'UID：' %>
-    <%= text_field_tag :user_name %><br>
-    <%= label_tag :password, 'PASS：' %>
-    <%= password_field_tag :password %><br>
-    <%= submit_tag 'ログイン' %>
-<% end %>
