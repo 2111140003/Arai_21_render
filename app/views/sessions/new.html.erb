@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-test
-=======
 <h1>新規ユーザー登録</h1>
 
-<%= form_for @users do |f| %>
+<%= form_for @user, url: {action: :create} do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
 
@@ -18,4 +15,3 @@ test
 <p>
     <%= link_to 'ログイン', root_path %>
 </p>
->>>>>>> session
