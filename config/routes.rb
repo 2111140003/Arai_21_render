@@ -6,9 +6,7 @@ Rails.application.routes.draw do
   resources :tasks , only: [:create, :new, :edit, :update, :destroy]
   get 'tasks/create'
   post 'tasks/create'
-  
-  
-  
+  delete 'tasks/:id' => 'tasks#destroy'
   # Defines the root path route ("/")
   # root "articles#index"
 end
