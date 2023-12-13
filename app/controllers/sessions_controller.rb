@@ -1,20 +1,20 @@
 class SessionsController < ApplicationController
-    def new
-        @Account = Account.new
+  def new
+  end
+  
+  def create
+    consumer = Consumer.find_by_email(params[:email])
+    if consumer && consumer.authenticate(params[:password])
+      session[:consumer_id] = consumer.id
+      redirect_to consumer_path, notice: "You have successfully logged in."
+    else
+      flash.now[:alert] = "Email or Password is invalid."
+      render :new
     end
-    
-    def create
-        account = Account.find_by(email: params[:session][:email].downcase)
-        if account && account.authenticate(params[:session][:password])
-            log_in account
-        redirect_to root_url
-        else
-        render 'new'
-        end
-    end
-    
-    def destroy
-        log_out if logged_in?
-        redirect_to root_url
-    end
+  end
+  
+  def destroy
+    session[:consumer_id] = nil
+    redirect_to root_path, notice: "You have successfully logged out."
+  end
 end
