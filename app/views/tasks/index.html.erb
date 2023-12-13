@@ -7,7 +7,7 @@
         </br>
         <%= e.task_det %>
         <%= link_to "編集", edit_task_path(e) %>
-        <%= link_to "削除", task_path(e), method: :delete %>
+        <%= link_to "削除", task_path(e), data: { turbo_method: :delete, turbo_confirm: '本当に削除していいですか？' }, class: "delete" %>
     </p>
     
     <hr>
