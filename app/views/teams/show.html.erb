@@ -1,0 +1,7 @@
+<% @teams.each do |e| %>
+    <p>
+        <%= e.team_name %>
+        <%= link_to e.team_name, tasks_path(e) %>
+    </p>
+<% end %>
+<%= link_to "新しいチームの追加", new_team_path %>
