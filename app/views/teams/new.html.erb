@@ -1,0 +1,11 @@
+<h1>チーム作成</h1>
+<%= form_with url: teams_path, local: true do |f| %>
+    <div class="field">
+        <%= f.label :team_name %><br>
+        <%= f.text_field :team_name %>
+    </div>
+    <div>
+        <%= f.submit "作成" %>
+    </div>
+    <%= link_to "戻る", root_path %>
+<% end %>
