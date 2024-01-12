@@ -24,15 +24,18 @@
                 <hr>
                 
             <% end %>
-        
-            <%= form_for @task, url: {action: :create} do |f| %>
-                <%= f.label :task_name, 'タスク名' %>
-                <%= f.text_field :task_name %>
-                </br>
-                <%= f.label :task_det, 'タスク詳細' %>
-                <%= f.text_field :task_det %></br>
-                <%= f.submit 'タスクの追加' %>
-            <% end %>
+        </div>
+        <div class="taskcover">
+            <div class="addtask">
+                <%= form_for @task, url: {action: :create} do |f| %>
+                    <%= f.label :task_name, 'タスク名' %>
+                    <%= f.text_field :task_name %>
+                    </br>
+                    <%= f.label :task_det, 'タスク詳細' %>
+                    <%= f.text_field :task_det %></br>
+                    <%= f.submit 'タスクの追加' %>
+                <% end %>
+            </div>
         </div>
     </div>
     
