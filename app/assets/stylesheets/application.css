@@ -16,7 +16,7 @@ body {
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 80px;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -52,8 +52,8 @@ input[type="password"] {
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 input[type="submit"] {
@@ -89,4 +89,28 @@ a:hover {
 
 .logout:hover{
     opacity:1;
+}
+
+.addtask{
+  position: fixed;
+  top: 30px;/*自分が固定したい位置(例は上から0pxの位置)*/
+  left: 50px;/*自分が固定したい位置(例は左から10pxの位置)*/
+}
+
+.task-list{
+    position: absolute;
+    top: 300px;
+    left: 100px;
+}
+
+.taskcover{
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 150px;
+    text-align: center;
+    margin-bottom: 20px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
 }
