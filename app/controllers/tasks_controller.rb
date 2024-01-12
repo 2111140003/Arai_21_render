@@ -15,9 +15,16 @@ class TasksController < ApplicationController
   end
   
   def create
-    task = Task.new(task_name: params[:task][:task_name],task_det: params[:task][:task_det])
-    task.save
-    redirect_to tasks_path
+    #task = Task.new(task_name: params[:task][:task_name],task_det: params[:task][:task_det])
+    #task.save
+    #redirect_to tasks_path
+    task = Task.new(task_params)
+    if task.save
+      redirect_to tasks_path
+    else
+      # タスクが保存できなかった場合の処理を追加する（エラーメッセージを表示など）
+      render :index
+    end
   end
   
   def destroy

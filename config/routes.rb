@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   post 'login', to: "sessions#create"
   delete 'logout', to: "sessions#destroy"
   resources :teams
-  resources :tasks, only: [:index, :create, :new, :edit, :update, :destroy]
+  resources :tasks
   get 'team_show', to: "teams#show"
-  
+  get 'tasks/create'
+  post 'tasks/create'
   # ... 他のコメントアウトされたルートや不要な行があれば確認
 
 end
