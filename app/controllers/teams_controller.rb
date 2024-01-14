@@ -12,8 +12,17 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
   end
   def create
-    team = Team.new(team_name: params[:team_name])
-    team.save
-    redirect_to team_show_path
+    @team = Team.new(team_params)
+    @team.users << current_user
+    if @team.save
+      redirect_to teams_path, notice: 'チームが作成されました。'
+    else
+      render :new
+    end
+  end
+  private
+
+  def team_params
+    params.require(:team).permit(:name)
   end
 end
