@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
   def index
-    @tasks=Task.all
-    @task=Task.new
+    @team = current_user.team
+    @tasks = @team.tasks
+    @task = Task.new
   end
   
   def edit
@@ -15,16 +16,20 @@ class TasksController < ApplicationController
   end
   
   def create
-    #task = Task.new(task_name: params[:task][:task_name],task_det: params[:task][:task_det])
-    #task.save
-    #redirect_to tasks_path
-    task = Task.new(task_params)
-    if task.save
-      redirect_to tasks_path
+  @task = Task.new(task_params)
+  @task.team = current_consumer.team
+  respond_to do |format|
+    if @task.save
+      # 保存成功の場合の処理
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.append("tasks", partial: "tasks/task", locals: { task: task })
+      end
+
     else
-      # タスクが保存できなかった場合の処理を追加する（エラーメッセージを表示など）
-      render :index
+      Rails.logger.error("タスクの保存に失敗しました。エラーメッセージ: #{task.errors.full_messages}")
+      # エラーメッセージの表示やログへの出力など
     end
+  end
   end
   
   def destroy
@@ -36,6 +41,6 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:task_name, :task_det)
+    params.require(:task).permit(:team_id, :task_name, :task_det)
   end
 end

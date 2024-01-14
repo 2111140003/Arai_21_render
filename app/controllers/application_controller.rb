@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+    
     include SessionsHelper
     private
    # ログイン済みユーザーかどうか確認
