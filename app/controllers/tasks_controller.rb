@@ -1,9 +1,15 @@
 class TasksController < ApplicationController
   def index
-    @team = current_user.team
-    @tasks = @team.tasks
-    @task = Task.new
+    if current_user
+      @team = current_user.team
+      @tasks = @team.tasks
+      @task = Task.new
+    else
+      # ログインしていない場合の処理
+      redirect_to login_path, alert: 'ログインしてください。'
+    end
   end
+
   
   def edit
     @task = Task.find(params[:id])
@@ -17,7 +23,7 @@ class TasksController < ApplicationController
   
   def create
   @task = Task.new(task_params)
-  @task.team = current_consumer.team
+  @task.team = current_user.team
   respond_to do |format|
     if @task.save
       # 保存成功の場合の処理

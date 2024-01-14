@@ -26,20 +26,6 @@
                     </div>
                 </turbo-frame>
             <% end %>
-<<<<<<< HEAD
-        </div>
-        <div class="taskcover">
-            <div class="addtask">
-                <%= form_for @task, url: {action: :create} do |f| %>
-                    <%= f.label :task_name, 'タスク名' %>
-                    <%= f.text_field :task_name %>
-                    </br>
-                    <%= f.label :task_det, 'タスク詳細' %>
-                    <%= f.text_field :task_det %></br>
-                    <%= f.submit 'タスクの追加' %>
-                <% end %>
-            </div>
-=======
 
             <%= form_for @task, url: {action: :create}, remote: true do |f| %>
                 <div class="task">
@@ -54,7 +40,18 @@
                     <%= f.submit 'タスクの追加' %>
                 </div>
             <% end %>
->>>>>>> 112
+        </div>
+        <div class="taskcover">
+            <div class="addtask">
+                <%= form_for @task, url: {action: :create} do |f| %>
+                    <%= f.label :task_name, 'タスク名' %>
+                    <%= f.text_field :task_name %>
+                    </br>
+                    <%= f.label :task_det, 'タスク詳細' %>
+                    <%= f.text_field :task_det %></br>
+                    <%= f.submit 'タスクの追加' %>
+                <% end %>
+            </div>
         </div>
     </div>
 
@@ -62,9 +59,7 @@
 
 </body>
 </html>
-<<<<<<< HEAD
+
 <div class="logout">
     <%= link_to "Logout", root_path, method: :delete %>
 </div>
-=======
->>>>>>> 112

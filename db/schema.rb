@@ -26,7 +26,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_12_132352) do
     t.boolean "task_com"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "team_id_f"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -39,5 +38,4 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_12_132352) do
     t.string "uid"
   end
 
-  add_foreign_key "tasks", "teams"
 end
