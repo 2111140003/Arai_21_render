@@ -14,20 +14,13 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = current_consumer.teams.find(params[:team_id]).tasks.find(params[:id])
-
-    respond_to do |format|
-      if @task.update(task_params)
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.append("tasks", partial: "tasks/task", locals: { task: @task })
-        end
-      else
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace("tasks", partial: "tasks/task_form", locals: { task: @task })
-        end
-      end
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      redirect_to team_path(@team), notice: 'タスクが更新されました。'
+    else
+      render :edit
     end
-  end
+end
 
   def create
     @task = Task.new(task_params)

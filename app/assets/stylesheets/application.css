@@ -116,3 +116,7 @@ a:hover {
     top: 0px;
     left: 0px;
 }
+.box{
+    width: 0.5em;
+    border: solid 3px #000;
+}

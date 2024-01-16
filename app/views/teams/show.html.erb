@@ -7,14 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <title>Your Page Title</title>
-    
+    <script>
+      document.getElementById('editTaskButton').addEventListener('click', function() {
+        document.getElementById('editTaskForm').style.display = 'block';
+      });
+    </script>
 </head>
 <body>
 <div class="container">
 <% @teams.each do |team| %>
     <p>
         <br>
-        <%= link_to team.team_name, team_path(team) %>        |
+            <h1>&nbsp;<%= link_to team.team_name, team_path(team) %>&nbsp;</h1>
         <br>
     </p>
 </div>
@@ -24,6 +28,7 @@
             <% @tasks.each do |e| %>
                 <turbo-frame id="<%= dom_id(e) %>">
                     <div class="task">
+                        <hr>
                         <p>
                             <h2>タスク名</h2>
                             <br>
@@ -34,7 +39,21 @@
                             <%= e.task_det %>
                         </p>
                         <hr>
-                        <%= link_to "編集", edit_task_path(e) %>
+                        <button id="editTaskButton">編集</button>
+
+                        <div id="editTaskForm" style="display: none;">
+                          <%= form_for e do |f| %>
+                            <%= f.label :task_name, 'タスク名' %>
+                            <%= f.text_field :task_name %>
+                            </br>
+                            <%= f.label :task_det, 'タスク詳細' %>
+                            <%= f.text_field :task_det %></br>
+                            <%= f.submit '編集完了' %>
+                            <div class="field">
+                            </div>
+                          <% end %>
+                        </div>
+
                         <%= link_to "削除", task_path(e), data: { turbo_method: :delete, turbo_confirm: '本当に削除していいですか？' }, class: "delete" %>
                     </div>
                 </turbo-frame>
@@ -55,4 +74,4 @@
                 <% end %>
             </div>
         </div>
-        </div>
+    </div>
