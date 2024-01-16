@@ -1,12 +1,6 @@
+<!-- app/views/tasks/_task.html.erb -->
 <div class="task">
-  <p>
-    <%= task.task_name %>
-    <br>
-    タスク詳細
-    <br>
-    <%= task.task_det %>
-  </p>
-  <hr>
-  <%= link_to "編集", edit_task_path(task) %>
-  <%= link_to "削除", task_path(task), data: { turbo_method: :delete, turbo_confirm: '本当に削除していいですか？' }, class: "delete" %>
+  <h3><%= task.task_name %></h3>
+  <p><%= task.task_det %></p>
+  <!-- Add any other task-related content here -->
 </div>

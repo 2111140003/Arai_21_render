@@ -7,16 +7,18 @@
     <title>Your Page Title</title>
 </head>
 <body>
-
     <div class="container">
         <div class="task-list" id="tasks">
             <% @tasks.each do |e| %>
                 <turbo-frame id="<%= dom_id(e) %>">
+                    <%= debug e %>
                     <div class="task">
                         <p>
+                            <h2>タスク名</h2>
+                            <br>
                             <%= e.task_name %>
                             <br>
-                            タスク詳細
+                            <h3>タスク詳細</h3>
                             <br>
                             <%= e.task_det %>
                         </p>
@@ -25,20 +27,6 @@
                         <%= link_to "削除", task_path(e), data: { turbo_method: :delete, turbo_confirm: '本当に削除していいですか？' }, class: "delete" %>
                     </div>
                 </turbo-frame>
-            <% end %>
-
-            <%= form_for @task, url: {action: :create}, remote: true do |f| %>
-                <div class="task">
-                    <%= f.label :task_name, 'タスク名' %>
-                    <%= f.text_field :task_name %>
-                    <br>
-                    <%= f.label :task_det, 'タスク詳細' %>
-                    <%= f.text_field :task_det %>
-                    <br>
-                    <%= f.label :team_id, 'チームID' %>
-                    <%= f.text_field :team_id %>
-                    <%= f.submit 'タスクの追加' %>
-                </div>
             <% end %>
         </div>
         <div class="taskcover">
@@ -50,16 +38,20 @@
                     <%= f.label :task_det, 'タスク詳細' %>
                     <%= f.text_field :task_det %></br>
                     <%= f.submit 'タスクの追加' %>
+                    <div class="field">
+                    <%= f.label :team_id %>
+                    <%= f.collection_select(:team_id, current_consumer.teams, :id, :team_name, prompt: 'Select Team') %>
+                  </div>
                 <% end %>
             </div>
         </div>
     </div>
 
     <%= link_to "Logout", root_path, method: :delete %>
+    <div class="logout">
+        <%= link_to "Logout", root_path, method: :delete %>
+    </div>
 
 </body>
 </html>
 
-<div class="logout">
-    <%= link_to "Logout", root_path, method: :delete %>
-</div>

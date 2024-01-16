@@ -1,4 +1,5 @@
 # app/models/team.rb
 class Team < ApplicationRecord
-    has_many :consumers
+    belongs_to :consumer
+    has_many :tasks
 end

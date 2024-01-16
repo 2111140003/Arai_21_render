@@ -4,12 +4,18 @@ class ConsumersController < ApplicationController
   end
   
   def create
-    consumer = Consumer.new(consumer_params)
-    if consumer.save
-      session[:consumer_id] = consumer.id
-      redirect_to consumer_path, notice: "signed in"
+    
+    @consumer = Consumer.new(consumer_params)
+    puts "=== Debug: AAAAAAAA ==="
+    if @consumer.save
+      puts "=== Debug: create action ==="
+      session[:consumer_id] = @consumer.id
+      redirect_to root_path, notice: "signed in"
     else
       render :new
+      puts "=== Debug: Validation Errors ==="
+      puts @consumer.errors.full_messages
+
     end
   end
 
@@ -19,6 +25,6 @@ class ConsumersController < ApplicationController
   
   private
   def consumer_params
-    params.require(:consumer).permit(:email, :password, :password_confirmation)
+    params.require(:consumer).permit(:email, :password, :password_confirmation, team_attributes: [:name])
   end
 end

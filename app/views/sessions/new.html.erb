@@ -7,7 +7,9 @@
     <title>Your Page Title</title>
 </head>
 <body>
-
+    <% if flash[:alert].present? %>
+      <p class="alert"><%= flash[:alert] %></p>
+    <% end %>
     <div class="login">
         <h1>Login</h1>
         
